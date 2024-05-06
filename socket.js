@@ -71,10 +71,9 @@ export const initializeSocket = (server) => {
         };
         socket.emit("joined", roomData);
         if (room.players.length === 2) {
-          io.to(room.roomId).emit("startGame", roomData);
+          io.to(room.roomId).broadcast("startGame", roomData);
         }
-      }
-      else{
+      } else {
         socket.emit("error", "Room not found");
       } // Add closing parenthesis and semicolon here
     });
